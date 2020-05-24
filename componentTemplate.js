@@ -3,16 +3,15 @@ import { View, Text, StyleSheet } from "react-native";
 
 const template = (props) => {
   return (
-    <View styles={styles.gameScreen2}>
+    <View styles={styles.screen}>
       <Text></Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  gameScreen2: {
+  screen: {
     flex: 1,
-    padding: 10,
   },
 });
 
