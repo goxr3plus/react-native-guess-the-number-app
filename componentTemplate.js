@@ -1,18 +1,18 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
 const template = (props) => {
-  return (
-    <View styles={styles.screen}>
-      <Text></Text>
-    </View>
-  );
-};
+   return (
+      <View styles={styles.container}>
+         <Text></Text>
+      </View>
+   )
+}
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-});
+   container: {
+     
+   }
+})
 
-export default template;
+export default template
