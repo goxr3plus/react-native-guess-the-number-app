@@ -48,11 +48,11 @@ const GameScreen = (props) => {
 
    return (
       <View style={styles.container}>
-         <Text>Opponent's Guess</Text>
+         <Text>Computer's guess</Text>
          <NumberContainer>{currentGuess}</NumberContainer>
          <Card style={styles.buttonContainer}>
-            <Button title="LOWER" onPress={() => nextGuessHandler('lower')} />
-            <Button title="GREATER" onPress={() => nextGuessHandler('greater')} />
+            <Button title="GO LOWER" onPress={() => nextGuessHandler('lower')} />
+            <Button title="GO HIGHER" onPress={() => nextGuessHandler('greater')} />
          </Card>
       </View>
    )
@@ -60,14 +60,14 @@ const GameScreen = (props) => {
 
 const styles = StyleSheet.create({
    container: {
-      flex: 1,
       padding: 10,
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      height: '30%'
    },
    buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-around',
-      marginTop: 20,
       width: 300,
       maxWidth: '80%'
    }
