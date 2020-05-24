@@ -1,13 +1,33 @@
 import React, { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import Header from './src/components/Header'
 import StartGameScreen from './src/screens/StartGameScreen'
 import GameScreen from './src/screens/GameScreen'
 import GameOverScreen from './src/screens/GameOverScreen'
+import * as Font from 'expo-font'
+import { AppLoading } from 'expo'
+
+const fetchFonts = () => {
+   Font.loadAsync({
+      'open-sans': require('./src/assets/fonts/OpenSans-Regular.ttf'),
+      'open-sans-bold': require('./src/assets/fonts/OpenSans-Bold.ttf')
+   })
+}
 
 export default function App() {
    const [userNumber, setUserNumber] = useState()
    const [numberOfRounds, setNumberOfRounds] = useState(0)
+   const [dataLoaded, setDataLoaded] = useState(false)
+
+   if (!dataLoaded) {
+      return (
+         <AppLoading
+            startAsync={fetchFonts}
+            onFinish={setDataLoaded(true)}
+            onError={(err) => Alert.alert('Failed loading fonts...', [{ text: 'Oupsss', style: 'cancel' }])}
+         />
+      )
+   }
 
    const restart = () => {
       setNumberOfRounds(0)
