@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 const template = (props) => {
    return (
-      <View styles={styles.container}>
+      <View style={styles.container}>
          <Text></Text>
       </View>
    )
