@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, Alert } fro
 import { Button } from 'react-native-elements'
 import NumberInput from '../components/NumberInput'
 import Colors from '../utils/Colors'
-import Card from './../components/Card'
-import NumberContainer from './../components/NumberContainer'
+import Card from '../components/Card'
+import NumberContainer from '../components/NumberContainer'
 
 const StartGameScreen = (props) => {
    const [enteredValue, setEnteredValue] = useState('')
@@ -32,6 +32,7 @@ const StartGameScreen = (props) => {
       setSelectedNumber(chosenNumber)
       setEnteredValue('')
       Keyboard.dismiss()
+      props.startGameHandler(chosenNumber)
    }
 
    let confirmedOutput
