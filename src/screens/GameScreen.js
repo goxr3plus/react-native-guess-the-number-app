@@ -1,8 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { View, Text, StyleSheet, Alert } from 'react-native'
-import NumberContainer from './../components/NumberContainer'
-import { Button } from 'react-native-elements'
+import React, { useEffect, useRef, useState } from 'react'
+import { Alert, StyleSheet, Text, View } from 'react-native'
+import Colors from '../utils/Colors'
 import Card from './../components/Card'
+import MainButton from './../components/MainButton'
+import NumberContainer from './../components/NumberContainer'
+import { FontAwesome5 } from '@expo/vector-icons'
 
 const generateRandomBetween = (min, max, exclude) => {
    min = Math.ceil(min)
@@ -51,9 +53,22 @@ const GameScreen = (props) => {
          <Text>Computer's guess</Text>
          <NumberContainer>{currentGuess}</NumberContainer>
          <Card style={styles.buttonContainer}>
-            <Button title="GO LOWER" onPress={() => nextGuessHandler('lower')} />
-            <Button title="GO HIGHER" onPress={() => nextGuessHandler('greater')} />
+            <MainButton onPress={() => nextGuessHandler('lower')}>
+               <FontAwesome5 name="minus" size={18} color="white">
+                  {' '}
+                  LOWER
+               </FontAwesome5>
+            </MainButton>
+            <MainButton onPress={() => nextGuessHandler('greater')}>
+               <FontAwesome5 name="plus" size={18} color="white">
+                  {' '}
+                  HIGHER
+               </FontAwesome5>
+            </MainButton>
          </Card>
+         <MainButton onPress={props.restart} style={{ backgroundColor: Colors.accent }} textStyle={{ fontSize: 18 }}>
+            Restart
+         </MainButton>
       </View>
    )
 }
@@ -68,8 +83,8 @@ const styles = StyleSheet.create({
    buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-around',
-      width: 300,
-      maxWidth: '80%'
+      width: 400,
+      maxWidth: '100%'
    }
 })
 

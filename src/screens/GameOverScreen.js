@@ -2,6 +2,8 @@ import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import NumberContainer from '../components/NumberContainer'
 import { Button } from 'react-native-elements'
+import Colors from '../utils/Colors'
+import MainButton from './../components/MainButton'
 
 const GameOverScreen = (props) => {
    return (
@@ -9,13 +11,18 @@ const GameOverScreen = (props) => {
          <View style={styles.container}>
             <Text style={styles.title}>The Game is Over!</Text>
             <View style={styles.imageContainer}>
+               {/* For Local Image */}
                <Image style={styles.image} source={require('../assets/gameOver.png')} resizeMode="cover"></Image>
+               {/* For Web Image */}
+               {/* <Image fadeDuration={1000} style={styles.image} source={{ uri: 'imageuri' }} resizeMode="cover"></Image> */}
             </View>
-            <Text>Number of rounds</Text>
+            <Text>
+               Phone <Text style={styles.hightlight}>rounds</Text>
+            </Text>
             <NumberContainer>{props.rounds}</NumberContainer>
-            <Text>User number was</Text>
+            <Text>Your number was</Text>
             <NumberContainer>{props.userChoice}</NumberContainer>
-            <Button title="Restart" onPress={props.restart}></Button>
+            <MainButton onPress={props.restart}>Restart</MainButton>
          </View>
       </View>
    )
@@ -43,6 +50,9 @@ const styles = StyleSheet.create({
    image: {
       width: '100%',
       height: '100%'
+   },
+   hightlight: {
+      color: Colors.accent
    }
 })
 

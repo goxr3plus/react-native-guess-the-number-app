@@ -45,7 +45,7 @@ export default function App() {
    let content = <StartGameScreen startGameHandler={startGameHandler}></StartGameScreen>
 
    if (userNumber && numberOfRounds <= 0) {
-      content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler}></GameScreen>
+      content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler} restart={restart}></GameScreen>
    } else if (numberOfRounds > 0) {
       content = <GameOverScreen rounds={numberOfRounds} userChoice={userNumber} restart={restart}></GameOverScreen>
    }
