@@ -1,16 +1,42 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Image, StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native'
 import NumberContainer from '../components/NumberContainer'
 import Colors from '../utils/Colors'
 import MainButton from './../components/MainButton'
 
 const GameOverScreen = (props) => {
+   /* -------------------------------------------  State + Lifecycle ------------------------------------------------------------- */
+
+   const [availableDeviceWidth, setAvailableDeviceWidth] = useState(Dimensions.get('window').width)
+   const [availableDeviceHeight, setAvailableDeviceHeight] = useState(Dimensions.get('window').height)
+
+   useEffect(() => {
+      const updateLayout = () => {
+         setAvailableDeviceWidth(Dimensions.get('window').width)
+         setAvailableDeviceHeight(Dimensions.get('window').height)
+      }
+
+      Dimensions.addEventListener('change', updateLayout)
+
+      return () => {
+         Dimensions.removeEventListener('change', updateLayout)
+      }
+   })
+
    /* -------------------------------------------  Render ---------------------------------------------------------------- */
    return (
       <ScrollView>
          <View style={styles.screen}>
             <Text style={styles.title}>The Game is Over!</Text>
-            <View style={styles.imageContainer}>
+            <View
+               style={{
+                  ...styles.imageContainer,
+                  width: availableDeviceWidth * 0.5,
+                  height: availableDeviceWidth * 0.5,
+                  borderRadius: (availableDeviceWidth * 0.7) / 2,
+                  marginVertical: availableDeviceHeight / 30,
+               }}
+            >
                {/* For Local Image */}
                <Image style={styles.image} source={require('../assets/gameOver.png')} resizeMode="cover"></Image>
                {/* For Web Image */}
@@ -42,13 +68,9 @@ const styles = StyleSheet.create({
       marginBottom: 0,
    },
    imageContainer: {
-      width: Dimensions.get('window').width * 0.5,
-      height: Dimensions.get('window').width * 0.5,
-      borderRadius: (Dimensions.get('window').width * 0.7) / 2, //For a perfect circle this must be always half of width and height,
       borderWidth: 3,
       borderColor: 'black',
       overflow: 'hidden',
-      marginVertical: Dimensions.get('window').height / 30,
    },
    image: {
       width: '100%',
