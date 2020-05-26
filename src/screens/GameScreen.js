@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Alert, StyleSheet, Text, View, ScrollView, FlatList } from 'react-native'
+import { Alert, StyleSheet, Text, View, ScrollView, FlatList, Dimensions } from 'react-native'
 import Colors from '../utils/Colors'
 import Card from './../components/Card'
 import MainButton from './../components/MainButton'
@@ -66,13 +66,13 @@ const GameScreen = (props) => {
          <NumberContainer>{currentGuess}</NumberContainer>
          <Card style={styles.buttonContainer}>
             <MainButton onPress={() => nextGuessHandler('lower')}>
-               <FontAwesome5 name="minus" size={18} color="white">
+               <FontAwesome5 name="minus" size={Dimensions.get('window').width < 600 ? 14 : 18} color="white">
                   {' '}
                   LOWER
                </FontAwesome5>
             </MainButton>
             <MainButton onPress={() => nextGuessHandler('greater')}>
-               <FontAwesome5 name="plus" size={18} color="white">
+               <FontAwesome5 name="plus" size={Dimensions.get('window').width < 600 ? 14 : 18} color="white">
                   {' '}
                   HIGHER
                </FontAwesome5>
@@ -101,10 +101,9 @@ const styles = StyleSheet.create({
    },
    buttonContainer: {
       flexDirection: 'row',
-      justifyContent: 'space-around',
-      marginTop: 20,
-      width: 400,
-      maxWidth: '90%',
+      justifyContent: 'space-between',
+      marginTop: Dimensions.get('window').height > 600 ? 20 : 5,
+      width: '100%',
    },
    listContainer: {
       flex: 1,

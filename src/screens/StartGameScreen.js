@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, Alert, Dimensions } from 'react-native'
 import { Button } from 'react-native-elements'
 import NumberInput from '../components/NumberInput'
 import Colors from '../utils/Colors'
@@ -23,7 +23,6 @@ const StartGameScreen = (props) => {
 
    const confirmInputHandler = () => {
       const chosenNumber = parseInt(enteredValue)
-      console.log(chosenNumber)
       if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
          Alert.alert('Invalid Number!', 'Number has to be ( 1-99 )', [{ text: 'Okay', style: 'destructive', onPress: resetInputHandler }])
          return
@@ -88,37 +87,38 @@ const styles = StyleSheet.create({
    screen: {
       flex: 1,
       padding: 10,
-      alignItems: 'center'
+      alignItems: 'center',
    },
    title: {
       fontSize: 20,
-      marginVertical: 10
+      marginVertical: 10,
       // fontFamily: 'openSans'
    },
    inputContainer: {
-      width: 300,
-      maxWidth: '80%',
-      alignItems: 'center'
+      width: '80%',
+      maxWidth: '95%',
+      minWidth: 300,
+      alignItems: 'center',
    },
    buttonContainer: {
       flexDirection: 'row',
       width: '100%',
       justifyContent: 'space-around',
-      paddingHorizontal: 15
+      paddingHorizontal: 15,
    },
    buttonStyle: {
-      width: 100
+      width: Dimensions.get('window').width / 4,
    },
    input: {
       width: 180,
-      textAlign: 'center'
+      textAlign: 'center',
    },
    summaryContainer: {
       height: 190,
       marginTop: 20,
       alignItems: 'center',
-      justifyContent: 'space-between'
-   }
+      justifyContent: 'space-between',
+   },
 })
 
 export default StartGameScreen

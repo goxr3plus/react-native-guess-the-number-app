@@ -58,8 +58,6 @@ const GameScreenWithScrollView = (props) => {
       setPastGuesses((pastGuesses) => [nextNumber, ...pastGuesses])
    }
 
-   console.log(pastGuesses)
-
    return (
       <View style={styles.screen}>
          <Text>Opponent's Guess</Text>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native'
 import NumberContainer from '../components/NumberContainer'
 import Colors from '../utils/Colors'
 import MainButton from './../components/MainButton'
@@ -29,30 +29,30 @@ const GameOverScreen = (props) => {
 
 const styles = StyleSheet.create({
    container: {
-      height: 650,
+      height: '96%',
       justifyContent: 'space-between',
-      alignItems: 'center'
+      alignItems: 'center',
    },
    title: {
       fontSize: 25,
-      marginBottom: 0
+      marginBottom: 0,
    },
    imageContainer: {
-      width: 300,
-      height: 300,
-      borderRadius: 150, //For a perfect circle this must be always half of width and height,
+      width: Dimensions.get('window').width * 0.4,
+      height: Dimensions.get('window').width * 0.4,
+      borderRadius: (Dimensions.get('window').width * 0.7) / 2, //For a perfect circle this must be always half of width and height,
       borderWidth: 3,
       borderColor: 'black',
       overflow: 'hidden',
-      marginVertical: 30
+      marginVertical: Dimensions.get('window').height / 30,
    },
    image: {
       width: '100%',
-      height: '100%'
+      height: '100%',
    },
    hightlight: {
-      color: Colors.accent
-   }
+      color: Colors.accent,
+   },
 })
 
 export default GameOverScreen
