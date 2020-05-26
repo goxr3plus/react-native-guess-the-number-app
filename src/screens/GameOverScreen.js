@@ -7,8 +7,8 @@ import MainButton from './../components/MainButton'
 const GameOverScreen = (props) => {
    /* -------------------------------------------  Render ---------------------------------------------------------------- */
    return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-         <View style={styles.container}>
+      <ScrollView>
+         <View style={styles.screen}>
             <Text style={styles.title}>The Game is Over!</Text>
             <View style={styles.imageContainer}>
                {/* For Local Image */}
@@ -22,16 +22,18 @@ const GameOverScreen = (props) => {
             <NumberContainer>{props.rounds}</NumberContainer>
             <Text>Your number was</Text>
             <NumberContainer>{props.userChoice}</NumberContainer>
-            <MainButton onPress={props.restart}>Restart</MainButton>
+            <MainButton style={{ marginVertical: 10 }} onPress={props.restart}>
+               Restart
+            </MainButton>
          </View>
-      </View>
+      </ScrollView>
    )
 }
 
 /* -------------------------------------------  Styles ---------------------------------------------------------------- */
 const styles = StyleSheet.create({
-   container: {
-      height: '96%',
+   screen: {
+      flex: 1,
       justifyContent: 'space-between',
       alignItems: 'center',
    },
@@ -40,8 +42,8 @@ const styles = StyleSheet.create({
       marginBottom: 0,
    },
    imageContainer: {
-      width: Dimensions.get('window').width * 0.4,
-      height: Dimensions.get('window').width * 0.4,
+      width: Dimensions.get('window').width * 0.5,
+      height: Dimensions.get('window').width * 0.5,
       borderRadius: (Dimensions.get('window').width * 0.7) / 2, //For a perfect circle this must be always half of width and height,
       borderWidth: 3,
       borderColor: 'black',

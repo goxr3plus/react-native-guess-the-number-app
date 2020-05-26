@@ -1,10 +1,10 @@
+import { FontAwesome5 } from '@expo/vector-icons'
 import React, { useEffect, useRef, useState } from 'react'
-import { Alert, StyleSheet, Text, View, ScrollView, FlatList, Dimensions } from 'react-native'
+import { Alert, Dimensions, FlatList, StyleSheet, Text, View } from 'react-native'
 import Colors from '../utils/Colors'
 import Card from './../components/Card'
 import MainButton from './../components/MainButton'
 import NumberContainer from './../components/NumberContainer'
-import { FontAwesome5 } from '@expo/vector-icons'
 
 const generateRandomBetween = (min, max, exclude) => {
    min = Math.ceil(min)
@@ -29,6 +29,20 @@ const GameScreen = (props) => {
 
    const [currentGuess, setCurrentGuess] = useState(initialGuess)
    const [pastGuesses, setPastGuesses] = useState([initialGuess])
+   const [availableDeviceWidth, setAvailableDeviceWidth] = useState(Dimensions.get('window').width)
+   const [availableDeviceHeight, setAvailableDeviceHeight] = useState(Dimensions.get('window').height)
+
+   useEffect(() => {
+      const updateLayout = () => {
+         setAvailableDeviceWidth(Dimensions.get('window').width)
+         setAvailableDeviceHeight(Dimensions.get('window').height)
+      }
+
+      Dimensions.addEventListener('change', updateLayout)
+      return () => {
+         Dimensions.removeEventListener('change', updateLayout)
+      }
+   })
 
    /* Get's called only after component is re-rendered */
    useEffect(() => {
@@ -67,21 +81,51 @@ const GameScreen = (props) => {
 
    const pastGuessesTransformed = pastGuesses.map((item) => ({ id: Math.random().toString(), value: item }))
 
+   if (availableDeviceHeight < 500) {
+      return (
+         <View style={styles.screen}>
+            <Text>Opponent's Guess</Text>
+            <View style={styles.controls}>
+               <MainButton onPress={() => nextGuessHandler('lower')}>
+                  <FontAwesome5 name="minus" size={Dimensions.get('window').width < 600 ? 14 : 18} color="white">
+                     {' '}
+                     LOWER
+                  </FontAwesome5>
+               </MainButton>
+               <NumberContainer>{currentGuess}</NumberContainer>
+               <MainButton onPress={() => nextGuessHandler('greater')}>
+                  <FontAwesome5 name="plus" size={Dimensions.get('window').width < 600 ? 14 : 18} color="white">
+                     {' '}
+                     HIGHER
+                  </FontAwesome5>
+               </MainButton>
+            </View>
+            <View style={styles.listContainer}>
+               <FlatList
+                  keyExtractor={(item) => item.id}
+                  data={pastGuessesTransformed}
+                  renderItem={renderListItem}
+                  contentContainerStyle={styles.list}
+               ></FlatList>
+            </View>
+         </View>
+      )
+   }
    /* -------------------------------------------  RENDER ------------------------------------------------------------------------ */
 
    return (
       <View style={styles.screen}>
          <Text>Opponent's Guess</Text>
          <NumberContainer>{currentGuess}</NumberContainer>
-         <Card style={styles.buttonContainer}>
+         <Card style={{ ...styles.buttonContainer, marginTop: availableDeviceHeight > 600 ? 20 : 5 }}>
             <MainButton onPress={() => nextGuessHandler('lower')}>
-               <FontAwesome5 name="minus" size={Dimensions.get('window').width < 600 ? 14 : 18} color="white">
+               <FontAwesome5 name="minus" size={availableDeviceWidth < 600 ? 14 : 18} color="white">
                   {' '}
                   LOWER
                </FontAwesome5>
             </MainButton>
             <MainButton onPress={() => nextGuessHandler('greater')}>
-               <FontAwesome5 name="plus" size={Dimensions.get('window').width < 600 ? 14 : 18} color="white">
+               <FontAwesome5 name="plus" size={availableDeviceWidth < 600 ? 14 : 18} color="white">
                   {' '}
                   HIGHER
                </FontAwesome5>
@@ -112,8 +156,13 @@ const styles = StyleSheet.create({
    buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginTop: Dimensions.get('window').height > 600 ? 20 : 5,
       width: '100%',
+   },
+   controls: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      width: '80%',
    },
    listContainer: {
       flex: 1,
