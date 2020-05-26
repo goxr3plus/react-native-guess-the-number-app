@@ -18,14 +18,17 @@ const generateRandomBetween = (min, max, exclude) => {
 }
 
 const GameScreen = (props) => {
-   const initialGuess = generateRandomBetween(1, 100, props.userNumber)
-   const [currentGuess, setCurrentGuess] = useState(initialGuess)
-   const [pastGuesses, setPastGuesses] = useState([initialGuess])
-
-   const currentLow = useRef(1)
-   const currentHigh = useRef(100)
+   /* -------------------------------------------  Variables -------------------------------------------------------------------- */
 
    const { userChoice, onGameOver } = props
+   const currentLow = useRef(1)
+   const currentHigh = useRef(100)
+   const initialGuess = generateRandomBetween(1, 100, props.userNumber)
+
+   /* -------------------------------------------  State + Lifecycle ------------------------------------------------------------- */
+
+   const [currentGuess, setCurrentGuess] = useState(initialGuess)
+   const [pastGuesses, setPastGuesses] = useState([initialGuess])
 
    /* Get's called only after component is re-rendered */
    useEffect(() => {
@@ -33,6 +36,8 @@ const GameScreen = (props) => {
          onGameOver(pastGuesses.length)
       }
    }, [currentGuess, userChoice, onGameOver])
+
+   /* -------------------------------------------  ActionHandlers ---------------------------------------------------------------- */
 
    const renderListItem = ({ index, item }) => {
       return (
@@ -58,7 +63,11 @@ const GameScreen = (props) => {
       setPastGuesses((pastGuesses) => [nextNumber, ...pastGuesses])
    }
 
+   /* -------------------------------------------  JSX about RENDER -------------------------------------------------------------- */
+
    const pastGuessesTransformed = pastGuesses.map((item) => ({ id: Math.random().toString(), value: item }))
+
+   /* -------------------------------------------  RENDER ------------------------------------------------------------------------ */
 
    return (
       <View style={styles.screen}>
@@ -93,6 +102,7 @@ const GameScreen = (props) => {
    )
 }
 
+/* -------------------------------------------  Styles ---------------------------------------------------------------------------- */
 const styles = StyleSheet.create({
    screen: {
       flex: 1,

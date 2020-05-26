@@ -8,6 +8,8 @@ import NumberContainer from '../components/NumberContainer'
 import MainButton from '../components/MainButton'
 
 const StartGameScreen = (props) => {
+   /* -------------------------------------------  State + LifeCycle ---------------------------------------------------------------- */
+
    const [enteredValue, setEnteredValue] = useState('')
    const [confirmed, setConfirmed] = useState(false)
    const [selectedNumber, setSelectedNumber] = useState()
@@ -23,6 +25,8 @@ const StartGameScreen = (props) => {
          Dimensions.removeEventListener('change', updateLayout)
       }
    })
+
+   /* -------------------------------------------  ActionHandlers ---------------------------------------------------------------- */
 
    const numberInputHandler = (inputText) => {
       setEnteredValue(inputText.replace(/[^0-9]/g, ''))
@@ -46,6 +50,8 @@ const StartGameScreen = (props) => {
       Keyboard.dismiss()
    }
 
+   /* -------------------------------------------  JSX about RENDER ---------------------------------------------------------------- */
+
    let confirmedOutput
 
    if (confirmed) {
@@ -57,6 +63,8 @@ const StartGameScreen = (props) => {
          </Card>
       )
    }
+
+   /* -------------------------------------------  ActionHandlers ---------------------------------------------------------------- */
 
    return (
       <ScrollView>
@@ -99,6 +107,8 @@ const StartGameScreen = (props) => {
       </ScrollView>
    )
 }
+
+/* -------------------------------------------  ActionHandlers ---------------------------------------------------------------- */
 
 const styles = StyleSheet.create({
    screen: {

@@ -5,6 +5,7 @@ import Colors from '../utils/Colors'
 import MainButton from './../components/MainButton'
 
 const GameOverScreen = (props) => {
+   /* -------------------------------------------  Render ---------------------------------------------------------------- */
    return (
       <View style={{ flex: 1, justifyContent: 'center' }}>
          <View style={styles.container}>
@@ -27,6 +28,7 @@ const GameOverScreen = (props) => {
    )
 }
 
+/* -------------------------------------------  Styles ---------------------------------------------------------------- */
 const styles = StyleSheet.create({
    container: {
       height: '96%',
