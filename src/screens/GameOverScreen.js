@@ -1,7 +1,6 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import NumberContainer from '../components/NumberContainer'
-import { Button } from 'react-native-elements'
 import Colors from '../utils/Colors'
 import MainButton from './../components/MainButton'
 
