@@ -1,7 +1,7 @@
 import { AppLoading } from 'expo'
 import * as Font from 'expo-font'
 import React, { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 import Header from './src/components/Header'
 import GameOverScreen from './src/screens/GameOverScreen'
 import GameScreen from './src/screens/GameScreen'
@@ -10,7 +10,7 @@ import StartGameScreen from './src/screens/StartGameScreen'
 const fetchFonts = () => {
    return Font.loadAsync({
       openSans: require('./src/assets/fonts/OpenSans-Regular.ttf'),
-      openSansBold: require('./src/assets/fonts/OpenSans-Bold.ttf')
+      openSansBold: require('./src/assets/fonts/OpenSans-Bold.ttf'),
    })
 }
 
@@ -51,15 +51,15 @@ export default function App() {
    }
 
    return (
-      <View style={styles.screen}>
+      <SafeAreaView style={styles.screen}>
          <Header title={'Guess a number'}></Header>
          {content}
-      </View>
+      </SafeAreaView>
    )
 }
 
 const styles = StyleSheet.create({
    screen: {
-      flex: 1
-   }
+      flex: 1,
+   },
 })

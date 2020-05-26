@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
    },
    headerTitle: {
       fontSize: 18,
-      color: Platform.OS == 'android' ? Colors.primary : 'white',
+      color: Platform.OS == 'ios' ? Colors.primary : 'white',
    },
 })
 
