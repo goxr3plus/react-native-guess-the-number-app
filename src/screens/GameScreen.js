@@ -5,7 +5,7 @@ import Colors from '../utils/Colors'
 import Card from './../components/Card'
 import MainButton from './../components/MainButton'
 import NumberContainer from './../components/NumberContainer'
-import * as ScreenOrientation from 'expo-screen-orientation'
+// import * as ScreenOrientation from 'expo-screen-orientation'
 
 const generateRandomBetween = (min, max, exclude) => {
    min = Math.ceil(min)
@@ -19,7 +19,7 @@ const generateRandomBetween = (min, max, exclude) => {
 }
 
 const GameScreen = (props) => {
-   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
+   // ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
 
    /* -------------------------------------------  Variables -------------------------------------------------------------------- */
 
