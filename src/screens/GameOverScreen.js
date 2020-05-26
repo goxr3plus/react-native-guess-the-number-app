@@ -43,7 +43,7 @@ const GameOverScreen = (props) => {
                {/* <Image fadeDuration={1000} style={styles.image} source={{ uri: 'imageuri' }} resizeMode="cover"></Image> */}
             </View>
             <Text>
-               Phone <Text style={styles.hightlight}>rounds</Text>
+               Phone <Text style={styles.highlight}>rounds</Text>
             </Text>
             <NumberContainer>{props.rounds}</NumberContainer>
             <Text>Your number was</Text>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
       width: '100%',
       height: '100%',
    },
-   hightlight: {
+   highlight: {
       color: Colors.accent,
    },
 })
