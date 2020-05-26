@@ -58,31 +58,33 @@ const GameScreen = (props) => {
       setPastGuesses((pastGuesses) => [nextNumber, ...pastGuesses])
    }
 
+   console.log(pastGuesses)
+
    return (
       <View style={styles.screen}>
-         <View style={styles.board}>
-            <Text>Computer's guess</Text>
-            <NumberContainer>{currentGuess}</NumberContainer>
-            <Card style={styles.boardButtons}>
-               <MainButton onPress={() => nextGuessHandler('lower')}>
-                  <FontAwesome5 name="minus" size={18} color="white">
-                     {' '}
-                     LOWER
-                  </FontAwesome5>
-               </MainButton>
-               <MainButton onPress={() => nextGuessHandler('greater')}>
-                  <FontAwesome5 name="plus" size={18} color="white">
-                     {' '}
-                     HIGHER
-                  </FontAwesome5>
-               </MainButton>
-            </Card>
-            <MainButton onPress={props.restart} style={{ backgroundColor: Colors.accent }} textStyle={{ fontSize: 18 }}>
-               Restart
+         <Text>Opponent's Guess</Text>
+         <NumberContainer>{currentGuess}</NumberContainer>
+         <Card style={styles.buttonContainer}>
+            <MainButton onPress={() => nextGuessHandler('lower')}>
+               <FontAwesome5 name="minus" size={18} color="white">
+                  {' '}
+                  LOWER
+               </FontAwesome5>
             </MainButton>
-         </View>
-         <View style={styles.list}>
-            <ScrollView>{pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length - index))}</ScrollView>
+            <MainButton onPress={() => nextGuessHandler('greater')}>
+               <FontAwesome5 name="plus" size={18} color="white">
+                  {' '}
+                  HIGHER
+               </FontAwesome5>
+            </MainButton>
+         </Card>
+         <MainButton onPress={props.restart} style={{ backgroundColor: Colors.accent, marginVertical: 15 }} textStyle={{ fontSize: 18 }}>
+            Restart
+         </MainButton>
+         <View style={styles.listContainer}>
+            <ScrollView contentContainerStyle={styles.list}>
+               {pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length - index))}
+            </ScrollView>
          </View>
       </View>
    )
@@ -90,24 +92,24 @@ const GameScreen = (props) => {
 
 const styles = StyleSheet.create({
    screen: {
+      flex: 1,
       padding: 10,
-      height: '100%',
       alignItems: 'center',
    },
-   board: {
-      height: '30%',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-   },
-   boardButtons: {
+   buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-around',
+      marginTop: 20,
       width: 400,
-      maxWidth: '100%',
+      maxWidth: '90%',
+   },
+   listContainer: {
+      flex: 1,
    },
    list: {
-      flex: 1,
-      width: '90%',
+      flexGrow: 1,
+      alignItems: 'center',
+      justifyContent: 'flex-end',
    },
    listItem: {
       borderColor: '#ccc',
@@ -117,6 +119,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       flexDirection: 'row',
       justifyContent: 'space-between',
+      width: '80%',
    },
 })
 
